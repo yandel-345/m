@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reparación de Componentes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    header, section, footer {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: #00ffd5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1, h2 {
+      color: #00ffd5;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .item {
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .item img, .item video {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #111;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .modal-content p {
+      margin-top: 15px;
+      color: #00ffd5;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: #ff5555;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #111;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<header>
+  <h1>Reparación de Componentes de Computadora</h1>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section id="inicio">
+  <h2>¿Quiénes Somos?</h2>
+  <div class="propósito">
+    <p>
+      Somos un equipo especializado en la <strong>reparación, el diagnóstico y el mantenimiento de componentes electrónicos de computadoras</strong>. Nuestro objetivo es devolver la funcionalidad a equipos dañados, optimizar su rendimiento y extender su vida útil. 
+    </p>
+    <p>
+      Contamos con <strong>herramientas profesionales</strong> y equipos capacitados para detectar fallas en tarjetas madre, cpu, puertos, ventiladores, entre otros elementos críticos. Nos enfocamos tanto en el mantenimiento preventivo como en soluciones correctivas.
+    </p>
+    <p>
+      Este sitio fue creado para mostrar los proyectos que realizamos, explicar nuestros servicios y facilitar la visualización de lo que realizamos. ¡Estamos listos para ayudarte a recuperar tu equipo!
+    </p>
+  </div>
+</section>
+
+<section id="proyectos">
+  <h2>Proyectos Realizados</h2>
+  <div class="galeria">
+    <!-- Ejemplo de proyecto -->
+    <div class="item">
+      <img src="WhatsApp Image 2025-06-13 at 3.57.44 PM (1).jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'placa base Fallas comunes: Capacitores dañados, puertos rotos, BIOS corrupto. Soluciones: Reemplazo de capacitores, limpieza o actualización del BIOS, revisión de conexiones.')">
+      <video controls>
+        <source src="WhatsApp Video 2025-06-13 at 3.57.44 PM.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
+
+    <!-- Aquí puedes duplicar el bloque anterior y reemplazar imagen/video/descripción -->
+    <!-- Hasta 30 elementos si deseas -->
+      <div class="item">
+      <img src="impresora.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Impresora: Fallas comunes: Atascos de papel, cartuchos vacíos, errores del controlador. Soluciones: Limpiar los rodillos, reemplazar cartuchos, reinstalar controladores.')">
+      <video controls>
+        <source src="video impresora.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="monitor.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Pantalla Fallas comunes: Pantalla negra, líneas horizontales, parpadeos. Soluciones: Verificar cableado, probar con otro monitor, ajustar resolución.')">
+      <video controls>
+        <source src="video monitor.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="cpu.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'CPU Fallas comunes: Sobrecalentamiento, pines doblados, errores al arrancar. Soluciones: Cambiar la pasta térmica, revisar el ventilador, reinstalar el procesador.')">
+      <video controls>
+        <source src="video cpu.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div>
+   <div class="item">
+      <img src="teclado.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Teclado Fallas comunes: Teclas trabadas, teclas que no responden, daño por líquidos. Soluciones: Limpiar el teclado, verificar conexión, cambiar el teclado si es necesario.')">
+      <video controls>
+        <source src="video teclado.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="mouse.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Mouse Fallas comunes: Movimiento errático, botones que no funcionan, desconexión. Soluciones: Cambiar baterías (si es inalámbrico), limpiar sensores, revisar conexión USB o reemplazar.')">
+      <video controls>
+        <source src="video mouse.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="fuente de alimentación.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'fuente de alimentacion Fallas comunes: No entrega voltaje, display apagado, ruido eléctrico. Soluciones: Verificar fusibles, medir salida con multímetro, revisar transformador interno.')">
+      <video controls>
+        <source src="video fuente de alimentación.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="osciloscopio.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'osciloscopio Fallas comunes: Pantalla sin señal, mala calibración, conectores dañados. Soluciones: Calibrar, revisar sondas, reiniciar configuración de fábrica.')">
+      <video controls>
+        <source src="video osciloscopio.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="placa de circuito.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Placa de circito Fallas comunes: No responde, pérdida de señal, botones muertos. Soluciones: Reemplazo de microinterruptores, revisión de soldaduras, cambio de batería o receptor.')">
+      <video controls>
+        <source src="video placa de circuito.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="tarjeta de modem.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Tarjeta de modem Fallas comunes: No detecta línea, conexión lenta o inestable, errores de driver. Soluciones: Reinstalar el controlador, probar con otra línea telefónica, cambiar la tarjeta si es antigua o fallida.')">
+      <video controls>
+        <source src="video tarjeta de modem.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="tarjeta de audio con grabador.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Tarjeta de audio con grabador Fallas comunes: No hay sonido, distorsión, no reconoce dispositivos de audio. Soluciones: Reinstalar o actualizar drivers, revisar conexiones, probar en otra ranura PCI o puerto USB (si es externa).')">
+      <video controls>
+        <source src="video tarjeta  de audio con grabador.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="audifonos inalambricos.png" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Audifonos inalambricos Fallas comunes: No se conectan por Bluetooth, se escucha entrecortado, uno de los audífonos no suena., la batería no carga o se descarga rápido. Soluciones: Emparejar nuevamente el dispositivo (eliminarlo y volver a conectarlo), cargar correctamente en la base o estuche, restablecer valores de fábrica, reemplazar la batería o reparar el módulo Bluetooth.')">
+      <video controls>
+        <source src="video audifonos inalambricos.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="laptop.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'laptop Fallas comunes: no enciende o no carga, batería se descarga rápidamente, se sobrecalienta, pantalla parpadea o se queda negra, teclado o touchpad no responden, sistema operativo lento o con errores, fallas en puertos USB o Wi-Fi. Soluciones: Verificar cargador y batería, cambiar si es necesario, limpiar ventiladores o renovar pasta térmica para enfriamiento, reinstalar el sistema operativo o actualizar drivers, revisar conexiones internas (pantalla, teclado), usar antivirus y liberar espacio en disco, formatear si el sistema tiene muchos errores o virus.')">
+      <video controls>
+        <source src="video laptop.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="bocina.png" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Bocina  Fallas comunes: No se conecta vía Bluetooth o se desconecta, No carga o no enciende, Sonido distorsionado o volumen bajo, Un solo altavoz funciona, Batería se descarga muy rápido.')">
+      <video controls>
+        <source src="video bocina.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="transformador.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'transformador  Soluciones: Restablecer la bocina (mantener presionado botón de encendido + Bluetooth por varios segundos), Emparejar de nuevo (eliminar el dispositivo en el teléfono y reconectarlo), Verificar y cambiar el cable o cargador, Actualizar el firmware si el fabricante lo permite, Revisar si hay suciedad o humedad en los botones o puerto de carga, Reemplazar la batería si ya no retiene carga.')">
+      <video controls>
+        <source src="video transformador.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="cable VGA.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Cable VGA Fallas comunes: Imagen distorsionada, interferencias, pantalla sin señal.Soluciones: Revisar conexión, cambiar el cable si los pines están doblados.')">
+      <video controls>
+        <source src="video cable VGA.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="cautin.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Cautin Fallas comunes: No calienta, punta deteriorada, corto interno. Soluciones: Cambiar la resistencia o la punta del cautín.')">
+      <video controls>
+        <source src="video cautin.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="ventilador.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Ventilador Fallas comunes: Ruidos, giro lento, no gira. Soluciones: Limpieza profunda, lubricación del eje, cambio del ventilador.')">
+      <video controls>
+        <source src="video ventilador.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="multimetro.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Multimetro Fallas comunes: Lecturas incorrectas, pantalla apagada, selector dañado. Soluciones: Reemplazar batería, revisar fusibles internos, limpiar contactos del dial.')">
+      <video controls>
+        <source src="video multimetro.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    <div class="item">
+      <img src="extensión electrica.jpeg" alt="Proyecto 1" onclick="mostrarModal('imagenes/proyecto1.jpg', 'Extensión electrica Fallas comunes: Tomas quemadas, interruptor roto, cable pelado. Soluciones: Cambio de enchufe, sustitución del cable o del interruptor.')">
+      <video controls>
+        <source src="video extención electrica.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
+      </video>
+    </div> 
+    
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p>¿Necesitas ayuda técnica con tu equipo?</p>
+  <p><strong>Correo:</strong> soporte@tureparacionpc.com</p>
+  <p><strong>Teléfono:</strong> +52 123 456 7890</p>
+  <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad Digital</p>
+</section>
+
+<footer>
+  &copy; 2025 Reparación de Componentes. Todos los derechos reservados.
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal()">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <p id="modal-texto"></p>
+  </div>
+</div>
+
+<script>
+  function mostrarModal(imagen, texto) {
+    document.getElementById("modal-img").src = imagen;
+    document.getElementById("modal-texto").innerText = texto;
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  // Fondo dinámico (partículas)
+  const canvas = document.getElementById("bg");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      r: Math.random() * 2 + 1
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "#00ffd5";
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
+
+
